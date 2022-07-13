@@ -1,0 +1,24 @@
+`timescale 1 ns / 1ns
+`include "R11617302.v"
+
+module adder_tb;
+
+reg [7:0] A = 0, B = 0;
+reg Cin = 0;
+
+
+wire [7:0] S;
+wire Cout;
+
+top uut(A,B,Cin,S,Cout);
+
+initial begin
+    A = 8'd255; #20;
+    B = 8'd255; #20;
+    $display("%d + %d + %d = %d", A, B, Cin, {Cout, S});
+end
+
+endmodule
+
+//in powershell type    iverilog -o adder.vvp adder_tb.v
+//  then                vvp adder.vvp
